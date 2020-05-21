@@ -1,0 +1,53 @@
+Removed Pin From Net: NetName=0V Pin=1-1
+Removed Pin From Net: NetName=SSR (OC) Pin=RELAY1-1
+Removed Pin From Net: NetName=5V Pin=RELAY1-2
+Removed Pin From Net: NetName=T- Pin=THERMO1-1
+Removed Pin From Net: NetName=T+ Pin=THERMO1-2
+Removed Member From Class: ClassName=Top Level Member=1
+Removed Member From Class: ClassName=Top Level Member=RELAY1
+Removed Member From Class: ClassName=Top Level Member=THERMO1
+Added Component: Designator=P2(TH 5.08mm Header 1x2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Angle"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Contact"; Value = "NA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digikey Link"; Value = "https://www.digikey.com.au/product-detail/en/weidm%C3%BCller/1760510000/281-1882-ND/459739"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digikey Part Number"; Value = "281-1882-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Flange"; Value = "No"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "1760510000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pitch"; Value = "5.08mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Positions"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Row Spacing"; Value = "0"; VariantName = "[No Variations]"
+Added Component: Designator=P3(TH 5.08mm Header 1x2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Angle"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Contact"; Value = "NA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digikey Link"; Value = "https://www.digikey.com.au/product-detail/en/weidm%C3%BCller/1760510000/281-1882-ND/459739"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digikey Part Number"; Value = "281-1882-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Flange"; Value = "No"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "1760510000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pitch"; Value = "5.08mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Positions"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Row Spacing"; Value = "0"; VariantName = "[No Variations]"
+Added Component: Designator=P4(TH 5.08mm Header 1x2)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Angle"; Value = "0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Contact"; Value = "NA"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digikey Link"; Value = "https://www.digikey.com.au/product-detail/en/weidm%C3%BCller/1760510000/281-1882-ND/459739"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digikey Part Number"; Value = "281-1882-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Flange"; Value = "No"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Part Number"; Value = "1760510000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pitch"; Value = "5.08mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Positions"; Value = "2"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Row Spacing"; Value = "0"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=0V Pin=P2-2
+Added Pin To Net: NetName=T+ Pin=P3-1
+Added Pin To Net: NetName=T- Pin=P3-2
+Added Pin To Net: NetName=5V Pin=P4-1
+Added Pin To Net: NetName=SSR (OC) Pin=P4-2
+Added Pin To Net: NetName=NetF1_1 Pin=F1-1
+Added Pin To Net: NetName=NetF1_1 Pin=P2-1
+Added Net: Name=NetF1_1
+Added Member To Class: ClassName=Top Level Member=Component P2 5.08mm
+Added Member To Class: ClassName=Top Level Member=Component P3 5.08mm
+Added Member To Class: ClassName=Top Level Member=Component P4 5.08mm
+Added Room: Name=Top Level
