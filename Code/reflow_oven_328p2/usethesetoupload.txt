@@ -1,0 +1,3 @@
+avrdude -p m328p -c usbasp -e -U flash:w:reflow_oven_328p2.ino.with_bootloader.eightanaloginputs.hex
+
+avrdude -p m328p -c usbasp -U lfuse:w:0xFF:m -U hfuse:w:0xDE:m -U efuse:w:0x05:m
