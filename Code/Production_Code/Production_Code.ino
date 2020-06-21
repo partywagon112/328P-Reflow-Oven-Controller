@@ -300,7 +300,7 @@ void stateMachine() {
         // Reflow process ended
         reflowState = REFLOW_STATE_IDLE;
         setpoint = 0;
-        println("COMPLETE")
+        Serial.println("COMPLETE");
       }
       break;
 
