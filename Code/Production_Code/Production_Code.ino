@@ -29,8 +29,13 @@
    0  |_ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _|_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
                                                                  Time (Seconds)
 
-  This firmware owed very much on the works of other talented individuals as
-  follows:
+  Thanks to:
+  
+  ==========================================
+  ROCKETSCREAM (https://github.com/rocketscream/Reflow-Oven-Controller)
+  ==========================================
+  Author of the original version of this project.
+  
   ==========================================
   Brett Beauregard (www.brettbeauregard.com)
   ==========================================
@@ -43,6 +48,12 @@
   ==========================================
   Author of Arduino MAX6675 library. Adafruit has been the source of tonnes of
   tutorials, examples, and libraries for everyone to learn.
+
+  ==========================================
+  Oliver Kraus (https://github.com/olikraus/u8g2)
+  ==========================================
+  Author of U8G2 library. Increadibly simple to use library, though often the bane
+  of my existance.
 
   Disclaimer
   ==========
