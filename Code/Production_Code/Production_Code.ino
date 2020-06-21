@@ -138,7 +138,7 @@ typedef enum DEBOUNCE_STATE
 #define PID_KD_REFLOW 350
 #define PID_SAMPLE_TIME 1000
 
-// ***** LCD MESSAGES *****
+// ***** OLED MESSAGES *****
 const char* lcdMessagesReflowStatus[] = {
   "Ready",
   "Preheat",
@@ -151,12 +151,12 @@ const char* lcdMessagesReflowStatus[] = {
 };
 
 // ***** PIN ASSIGNMENT *****
-int ssrPin = 5;
-int thermocoupleSOPin = 12;
-int thermocoupleCSPin = 10;
-int thermocoupleCLKPin = 13;
-int switch1Pin = 2;
-int switch2Pin = 3;
+const int ssrPin = 5;
+const int thermocoupleSOPin = 12;
+const int thermocoupleCSPin = 10;
+const int thermocoupleCLKPin = 13;
+const int switch1Pin = 2;
+const int switch2Pin = 3;
 
 // ***** PID CONTROL VARIABLES *****
 double setpoint;
@@ -195,8 +195,7 @@ U8G2_SSD1306_128X32_UNIVISION_F_SW_I2C oled(U8G2_R2, SCL, SDA, U8X8_PIN_NONE);
 MAX6675 thermocouple(thermocoupleCLKPin, thermocoupleCSPin, thermocoupleSOPin);
 
 
-// FUNCTIONS
-
+// ***** FUNCTIONS *****
 
 void stateMachine() {
   // Reflow oven controller state machine
@@ -216,7 +215,7 @@ void stateMachine() {
         if (switchStatus == SWITCH_1)
         {
           // Send header for CSV file
-          Serial.println("Time Setpoint Input Output");
+          Serial.println("Time, Setpoint, Input, Output");
           // Intialize seconds timer for serial debug information
           timerSeconds = 0;
           // Initialize PID control window starting time
@@ -301,6 +300,7 @@ void stateMachine() {
         // Reflow process ended
         reflowState = REFLOW_STATE_IDLE;
         setpoint = 0;
+        println("COMPLETE")
       }
       break;
 
@@ -440,25 +440,7 @@ void updateTemperature() {
 }
 
 void printDisplay() {
-  if (millis() > nextCheck)
-  {
-    // Check input in the next seconds
-    nextCheck += 1000;
-    // If reflow process is on going
-    if (reflowStatus == REFLOW_STATUS_ON) {
-      // Increase seconds timer for reflow curve analysis
-      timerSeconds++;
-      // Send temperature and time stamp to serial
-      Serial.print(timerSeconds);
-      Serial.print(" ");
-      Serial.print(setpoint);
-      Serial.print(" ");
-      Serial.print(input);
-      Serial.print(" ");
-      Serial.println(output);
-    }
-    
-    oled.firstPage();
+  oled.firstPage();
     do {
       oled.setDrawColor(2);
       oled.setFontMode(0);
@@ -482,14 +464,13 @@ void printDisplay() {
         oled.print("°C");
         if (timerSeconds > 0){
           char str[20];
-          oled.drawStr(oled.getDisplayWidth()-oled.getStrWidth(itoa(timerSeconds,str, 10)) - 10, 10, itoa(timerSeconds,str, 3));
+          oled.drawStr(oled.getDisplayWidth()-oled.getStrWidth(itoa(timerSeconds,str, 10)), 10, itoa(timerSeconds,str, 3));
           // ^ i'll admit it, this is the most wasteful function in history. WHAT OF IT!
         }
                 
       }
     } while (oled.nextPage());
   }
-}
 
 void setup() {
   Serial.println("STARTING");
@@ -514,7 +495,7 @@ void setup() {
   oled.sendBuffer();
   delay(2500);
 
-  // Serial communication at 57600 bps
+  // Serial communication at 115200 bps
   Serial.begin(115200);
 
   // Set window size
@@ -528,6 +509,23 @@ void setup() {
 }
 
 void loop() {
+  if (millis() > nextCheck){
+    // Check input in the next seconds
+    nextCheck += 1000;
+    // If reflow process is on going
+    if (reflowStatus == REFLOW_STATUS_ON) {
+      // Increase seconds timer for reflow curve analysis
+      timerSeconds++;
+      // Send temperature and time stamp to serial
+      Serial.print(timerSeconds);
+      Serial.print(", ");
+      Serial.print(setpoint);
+      Serial.print(", ");
+      Serial.print(input);
+      Serial.print(", ");
+      Serial.println(output);
+    }
+  }
   printDisplay();
   stateMachine();
   updateTemperature();
