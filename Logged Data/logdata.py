@@ -31,25 +31,14 @@ def readoven(ser):
     f = open(completename, "w")
 
     while (ser.isOpen()):
-        try:
-            buf = ser.readline().decode('ascii')
-            buf = buf.rstrip('\r')
-            buf = buf.rstrip('\n')
-            if buf == "COMPLETE":
-                print("All done bud")
-                ser.close()
-                return
-            f.write(buf)
-            print(buf)
-
-        except KeyboardInterrupt:
-            print("ENDED!")
-            # Reset machine, because you'll probably forget like an idiot
+        buf = ser.readline().decode('ascii')
+        buf = buf.rstrip('\r')
+        buf = buf.rstrip('\n')
+        if buf == 'COMPLETE':
+            print("All done bud")
             ser.close()
-            return
-        finally:
-            f.close()
-            return
+        f.write(buf)
+        print(buf)
 
 def main():
     # This boi doesn't really need to be there, but it's usefulish?
