@@ -107,7 +107,6 @@ typedef enum VERBOSE_STATE
 {
   VERBOSE_0,    // No logging except for when REFLOW_STATUS_ON
   VERBOSE_1,    // Log temperature and time every second.
-  //  VERBOSE_2,
 } verboseState_t;
 
 typedef enum INTERACTIVE_STATUS
@@ -146,7 +145,7 @@ typedef enum DEBOUNCE_STATE
 #define SOAK_TEMPERATURE_STEP 5
 #define SOAK_MICRO_PERIOD 10000
 #define DEBOUNCE_PERIOD_MIN 50
-#define REFLOW_TIMEOUT 500
+#define REFLOW_TIMEOUT 750
 
 // ***** PID PARAMETERS *****
 // ***** PRE-HEAT STAGE *****
@@ -351,8 +350,10 @@ void stateMachine() {
       break;
 
     case REFLOW_STATE_TIMEOUT:
-      Serial.println("TIMED OUT");
+      Serial.println("RESETTING TO IDLE!");
       reflowState = REFLOW_STATE_IDLE;
+      reflowStatus = REFLOW_STATUS_OFF;
+      break;
 
     case REFLOW_STATE_ERROR:
       // If thermocouple problem is still present
@@ -573,9 +574,14 @@ void printVerbosity() {
 }
 
 void timeoutWatchdog() {
-  if (timerSeconds > REFLOW_TIMEOUT)
-    reflowState = REFLOW_STATE_TIMEOUT;
-    reflowStatus - REFLOW_STATUS_OFF;
+  if (reflowStatus == REFLOW_STATUS_ON){
+    if (timerSeconds > REFLOW_TIMEOUT){
+      reflowStatus = REFLOW_STATUS_OFF;
+      reflowState = REFLOW_STATE_TIMEOUT;
+      Serial.println("error... timeout");
+      timerSeconds = 0;
+    }
+  }
 }
 
 void setup() {
@@ -605,8 +611,14 @@ void setup() {
   oled.clearBuffer();
 
   // Initialise serial communications
-  verboseState = VERBOSE_1;
+  verboseState = VERBOSE_0;
   Serial.begin(115200);
+
+  // Print versioning
+  Serial.print("COMPILED ");
+  Serial.print(__DATE__);
+  Serial.print(" ");
+  Serial.println(__TIME__);
 
   // Set window size
   windowSize = 2000;
@@ -634,6 +646,7 @@ void loop() {
   }
 
   timeoutWatchdog();
+  
   if (interactiveStatus == INTERACTIVE_STATUS_ON)
     interactiveMode();
   printDisplay();
