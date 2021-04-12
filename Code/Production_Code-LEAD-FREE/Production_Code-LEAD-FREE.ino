@@ -605,7 +605,7 @@ void setup() {
 
   // Start-up splash screen
   oled.drawStr(0, 10, "I am no longer ");
-  oled.drawStr(0, 30, "a toaster oven NO-PB!");
+  oled.drawStr(0, 30, "for lead, No-PB!");
   oled.sendBuffer();
   delay(2500);
   oled.clearBuffer();
@@ -627,7 +627,7 @@ void setup() {
   // Initialize thermocouple reading variable
   nextRead = millis();
   
-//  interactiveStatus = INTERACTIVE_STATUS_ON;
+  interactiveStatus = INTERACTIVE_STATUS_ON;
 }
 
 void loop() {
@@ -654,5 +654,4 @@ void loop() {
   updateTemperature();
   updateInput();
   updateRelay();
-
 }
