@@ -603,8 +603,12 @@ void setup_serial(){
   Serial.begin(9600);
   Serial.println(SPASH_LINE1);
   Serial.println(SPASH_LINE2);
-}
 
+  Serial.print("COMPILED: ");
+  Serial.print(__DATE__);
+  Serial.print(" : ");
+  Serial.println( __TIME__);
+}
 
 U8G2_SSD1306_128X32_UNIVISION_F_SW_I2C oled(U8G2_R2, SCL, SDA, U8X8_PIN_NONE);
 
